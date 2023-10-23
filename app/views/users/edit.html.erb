@@ -1,0 +1,36 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+
+<div class="container">
+ <div class="row mt-3">
+   <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+        <h2>User Info</h2>
+        
+        <% if @user.errors.any? %>
+          <%= @user.errors.count %>error prohibited this obj from being saved:
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        
+        <%= form_with model: @user do |f| %>
+            <div class="form-group">
+              <label style="display: block">Name</label>
+              <%= f.text_field :name, size: 70 %>
+            </div>
+            <div class="form-group">
+        　     <label style="display: block">Image</label>
+              <%= f.file_field :profile_image, accept: "image/*" %>
+            </div>
+            <div class="form-group mb-5">
+              <label style="display: block">Introduction</label>
+              <%= f.text_area :introduction, size: "75" %>
+            </div>
+          <%= f.submit "Update User", class: "btn btn-secondary", style: "display: block;"%>
+        <% end %>
+    </div>
+  </div>
+</div>
